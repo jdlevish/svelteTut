@@ -2,61 +2,43 @@
 	import App from "./App.svelte";
 	import Question from "./Question.svelte";
 	import { fade } from "svelte/transition";
-
+	let show = false;
 	let quiz = getQuiz();
 	let activeQuestion = 0;
 	let score = 0;
 	let highScore = 0;
-	// api queries
-	let science =
-		"https://opentdb.com/api.php?amount=10&category=17&type=multiple";
-	let movies =
-		"https://opentdb.com/api.php?amount=10&category=11&type=multiple";
-	let music = "https://opentdb.com/api.php?amount=10&category=12&type=multiple";
-	let TV = "https://opentdb.com/api.php?amount=10&category=14&type=multiple";
-	let videoGames =
-		"https://opentdb.com/api.php?amount=10&category=15&type=multiple";
-	let computers =
-		"https://opentdb.com/api.php?amount=10&category=18&type=multiple";
-	let math = "https://opentdb.com/api.php?amount=10&category=19&type=multiple";
-	let mythology =
-		"https://opentdb.com/api.php?amount=10&category=20&type=multiple";
-	let sports =
-		"https://opentdb.com/api.php?amount=10&category=21&type=multiple";
-	let geography =
-		"https://opentdb.com/api.php?amount=10&category=22&type=multiple";
-	let history =
-		"https://opentdb.com/api.php?amount=10&category=23&type=multiple";
-	let politics =
-		"https://opentdb.com/api.php?amount=10&category=24&type=multiple";
-	let art = "https://opentdb.com/api.php?amount=10&category=25&type=multiple";
-	let celebrities =
-		"https://opentdb.com/api.php?amount=10&category=26&type=multiple";
-	let animals =
-		"https://opentdb.com/api.php?amount=10&category=27&type=multiple";
-	let vehicles =
-		"https://opentdb.com/api.php?amount=10&category=28&type=multiple";
-	let comics =
-		"https://opentdb.com/api.php?amount=10&category=29&type=multiple";
+	let currentCategory = "";
+
+	function myFunction() {
+		document.getElementById("myDropdown").classList.toggle("show");
+		var dropdowns = document.getElementsByClassName("dropdown-content");
+		var i;
+		for (i = 0; i < dropdowns.length; i++) {
+			var openDropdown = dropdowns[i];
+			if (openDropdown.classList.contains("show")) {
+				openDropdown.classList.remove("show");
+			}
+		}
+	}
 
 	// array of quiz topics
 	let topics = [
-		"science",
-		"movies",
-		"music",
-		"tv",
-		"video games",
-		"computers",
-		"mythology",
-		"sports",
-		"geography",
-		"history",
-		"politics",
-		"art",
-		"celebrities",
-		"animals",
-		"vehicles",
-		"comics",
+		{ title: "science", url: "category=17&type=multiple" },
+		{ title: "movies", url: "category=11&type=multiple" },
+		{ title: "music", url: "category=12&type=multiple" },
+		{ title: "tv", url: "category=14&type=multiple" },
+		{ title: "video games", url: "category=15&type=multiple" },
+		{ title: "computers", url: "category=18&type=multiple" },
+		{ title: "mythology", url: "category=20&type=multiple" },
+		{ title: "sports", url: "category=21&type=multiple" },
+		{ title: "geography", url: "category=22&type=multiple" },
+		{ title: "history", url: "category=23&type=multiple" },
+		{ title: "politics", url: "category=24&type=multiple" },
+		{ title: "art", url: "category=25&type=multiple" },
+		{ title: "celebrities", url: "category=26&type=multiple" },
+		{ title: "animals", url: "category=27&type=multiple" },
+		{ title: "vehicles", url: "category=28&type=multiple" },
+		{ title: "comics", url: "category=29&type=multiple" },
 	];
 
 	function scorePoint() {
@@ -79,29 +61,50 @@
 		}
 	}
 
-	async function getQuiz() {
+	async function getQuiz(url) {
+		let queryString = "category=17&type=multiple";
+		queryString = url;
+		console.log(queryString);
+
 		const res = await fetch(
-			"https://opentdb.com/api.php?amount=10&category=17&type=multiple"
+			"https://opentdb.com/api.php?amount=10&" + queryString
 		);
 		const quiz = await res.json();
 		console.log(quiz);
 		return quiz;
 	}
-
-	function resetQuiz() {
+	function choseCategory(topic) {
+		currentCategory = topic.title;
+		let categoryQuery = topic.url;
+		resetQuiz(categoryQuery);
+		show = !show;
+	}
+	function resetQuiz(url) {
 		if (score > highScore) {
 			highScore = score;
 			localStorage.setItem("high", highScore);
 		}
+		let query = url;
 		resetActiveQuestion();
 		resetScore();
-		quiz = getQuiz();
+		quiz = getQuiz(query);
 	}
 	checkHighScore();
 </script>
 
 <div class="main">
-	<h1 id="title">Science trivia</h1>
+	<h1 id="title">{currentCategory} trivia</h1>
+	<div class="dropdown">
+		<button on:click={() => (show = !show)} class="dropbtn">Category</button>
+		<div
+			id="myDropdown"
+			class={show ? "dropdown-content show" : "dropdown-content"}
+		>
+			{#each topics as topic}
+				<a on:click={() => choseCategory(topic)}>{topic.title}</a>
+			{/each}
+		</div>
+	</div>
 
 	<button id="newQuiz" on:click={resetQuiz}>Start new Quiz</button>
 	<h3 id="score">My Score: {score}</h3>
@@ -110,8 +113,6 @@
 	{#await quiz}
 		loading........
 	{:then data}
-		<!-- <h3>{data.results[0].question}</h3> -->
-
 		{#each data.results as question, index}
 			{#if index === activeQuestion}
 				<div transition:fade class="question">
@@ -167,5 +168,55 @@
 		grid-column-start: 1;
 		grid-column-end: 4;
 		grid-row-start: 3;
+	}
+	/* Dropdown Button */
+	.dropbtn {
+		background-color: #3498db;
+		color: white;
+		padding: 16px;
+		font-size: 16px;
+		border: none;
+		cursor: pointer;
+	}
+
+	/* Dropdown button on hover & focus */
+	.dropbtn:hover,
+	.dropbtn:focus {
+		background-color: #2980b9;
+	}
+
+	/* The container <div> - needed to position the dropdown content */
+	.dropdown {
+		position: relative;
+		display: inline-block;
+	}
+
+	/* Dropdown Content (Hidden by Default) */
+
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		background-color: #f1f1f1;
+		min-width: 160px;
+		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+		z-index: 1;
+	}
+
+	/* Links inside the dropdown */
+	.dropdown-content a {
+		color: black;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+	}
+
+	/* Change color of dropdown links on hover */
+	.dropdown-content a:hover {
+		background-color: #ddd;
+	}
+
+	/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+	.show {
+		display: grid;
 	}
 </style>
