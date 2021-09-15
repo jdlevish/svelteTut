@@ -5,6 +5,7 @@
 	export let question;
 	export let nextQuestion;
 	export let scorePoint;
+	let correctAnswer = question.correct_answer;
 	let isAnswered = false;
 	let questionRes;
 	let answers = question.incorrect_answers;
@@ -37,7 +38,11 @@
 		{nextQuestion}
 		{scorePoint}
 		{isAnswered}
-	/>{:else if questionRes === false}<False {nextQuestion} {isAnswered} />{/if}
+	/>{:else if questionRes === false}<False
+		{nextQuestion}
+		{correctAnswer}
+		{isAnswered}
+	/>{/if}
 
 <style>
 	:global(button) {

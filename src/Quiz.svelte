@@ -7,6 +7,57 @@
 	let activeQuestion = 0;
 	let score = 0;
 	let highScore = 0;
+	// api queries
+	let science =
+		"https://opentdb.com/api.php?amount=10&category=17&type=multiple";
+	let movies =
+		"https://opentdb.com/api.php?amount=10&category=11&type=multiple";
+	let music = "https://opentdb.com/api.php?amount=10&category=12&type=multiple";
+	let TV = "https://opentdb.com/api.php?amount=10&category=14&type=multiple";
+	let videoGames =
+		"https://opentdb.com/api.php?amount=10&category=15&type=multiple";
+	let computers =
+		"https://opentdb.com/api.php?amount=10&category=18&type=multiple";
+	let math = "https://opentdb.com/api.php?amount=10&category=19&type=multiple";
+	let mythology =
+		"https://opentdb.com/api.php?amount=10&category=20&type=multiple";
+	let sports =
+		"https://opentdb.com/api.php?amount=10&category=21&type=multiple";
+	let geography =
+		"https://opentdb.com/api.php?amount=10&category=22&type=multiple";
+	let history =
+		"https://opentdb.com/api.php?amount=10&category=23&type=multiple";
+	let politics =
+		"https://opentdb.com/api.php?amount=10&category=24&type=multiple";
+	let art = "https://opentdb.com/api.php?amount=10&category=25&type=multiple";
+	let celebrities =
+		"https://opentdb.com/api.php?amount=10&category=26&type=multiple";
+	let animals =
+		"https://opentdb.com/api.php?amount=10&category=27&type=multiple";
+	let vehicles =
+		"https://opentdb.com/api.php?amount=10&category=28&type=multiple";
+	let comics =
+		"https://opentdb.com/api.php?amount=10&category=29&type=multiple";
+
+	// array of quiz topics
+	let topics = [
+		"science",
+		"movies",
+		"music",
+		"tv",
+		"video games",
+		"computers",
+		"mythology",
+		"sports",
+		"geography",
+		"history",
+		"politics",
+		"art",
+		"celebrities",
+		"animals",
+		"vehicles",
+		"comics",
+	];
 
 	function scorePoint() {
 		score++;
