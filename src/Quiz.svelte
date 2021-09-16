@@ -3,23 +3,12 @@
 	import Question from "./Question.svelte";
 	import { fade } from "svelte/transition";
 	let show = false;
-	let quiz = getQuiz();
 	let activeQuestion = 0;
 	let score = 0;
 	let highScore = 0;
-	let currentCategory = "";
-
-	function myFunction() {
-		document.getElementById("myDropdown").classList.toggle("show");
-		var dropdowns = document.getElementsByClassName("dropdown-content");
-		var i;
-		for (i = 0; i < dropdowns.length; i++) {
-			var openDropdown = dropdowns[i];
-			if (openDropdown.classList.contains("show")) {
-				openDropdown.classList.remove("show");
-			}
-		}
-	}
+	let currentCategory = "tv";
+	let categoryQuery = "category=14&type=multiple";
+	let quiz = getQuiz(categoryQuery);
 
 	// array of quiz topics
 	let topics = [
@@ -75,7 +64,7 @@
 	}
 	function choseCategory(topic) {
 		currentCategory = topic.title;
-		let categoryQuery = topic.url;
+		categoryQuery = topic.url;
 		resetQuiz(categoryQuery);
 		show = !show;
 	}
@@ -84,7 +73,9 @@
 			highScore = score;
 			localStorage.setItem("high", highScore);
 		}
+
 		let query = url;
+		console.log(query);
 		resetActiveQuestion();
 		resetScore();
 		quiz = getQuiz(query);
@@ -106,7 +97,9 @@
 		</div>
 	</div>
 
-	<button id="newQuiz" on:click={resetQuiz}>Start new Quiz</button>
+	<button id="newQuiz" on:click={() => resetQuiz(categoryQuery)}
+		>Start new Quiz</button
+	>
 	<h3 id="score">My Score: {score}</h3>
 	<h3 id="highScore">High Score: {highScore}</h3>
 
