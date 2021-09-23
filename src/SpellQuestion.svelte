@@ -2,47 +2,49 @@
 	import True from "./True.svelte";
 	import False from "./False.svelte";
 	import { fade } from "svelte/transition";
+
 	export let question;
 	export let nextQuestion;
 	export let scorePoint;
 	let correctAnswer = question.correct_answer;
 	let isAnswered = false;
 	let questionRes;
-	let answers = question.incorrect_answers;
+	let answers = question.answers;
+	let spell = "";
 
 	function handleClick(answer) {
 		questionRes = answer === question.correct_answer;
 		isAnswered = true;
 		return questionRes;
 	}
-	function shuffleAnswers(answers) {
-		answers.push(question.correct_answer);
-		answers.sort(() => Math.random() - 0.5);
-	}
-	shuffleAnswers(answers);
+
+	console.log(question);
 </script>
 
-<h2>{@html question.question}</h2>
-{#if !isAnswered}
-	{#each answers as answer}
-		<button
-			class="btn"
-			on:click={() => {
-				handleClick(answer);
-			}}>{@html answer}</button
+<div>
+	{#if !isAnswered}
+		<h2 class="question">{@html question.question}</h2>
+		<h3>{spell}</h3>
+
+		<form
+			on:submit={() => {
+				handleClick(spell);
+			}}
 		>
-	{/each}
-	<br />
-{:else if questionRes}
-	<True
-		{nextQuestion}
-		{scorePoint}
-		{isAnswered}
-	/>{:else if questionRes === false}<False
-		{nextQuestion}
-		{correctAnswer}
-		{isAnswered}
-	/>{/if}
+			<input bind:value={spell} />
+		</form>
+	{:else if questionRes}
+		<True
+			{nextQuestion}
+			{scorePoint}
+			{isAnswered}
+		/>{:else if questionRes === false}<False
+			{nextQuestion}
+			{correctAnswer}
+			{isAnswered}
+		/>
+	{/if}
+</div>
 
 <style>
 	:global(button) {
@@ -67,5 +69,13 @@
 	:global(button:hover) {
 		background-color: rgb(253, 255, 144);
 		color: rgb(204, 59, 108);
+	}
+	:global(img) {
+		height: 20vh;
+		width: 17vw;
+	}
+	.question {
+		margin-left: 40%;
+		margin-right: auto;
 	}
 </style>

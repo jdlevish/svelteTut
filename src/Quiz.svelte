@@ -1,33 +1,26 @@
 <script>
-	import App from "./App.svelte";
-	import Question from "./Question.svelte";
-	import { fade } from "svelte/transition";
+	// import App from "./App.svelte";
+
+	import questions from "../public/questions.json";
+	import Spelling from "./Spelling.svelte";
+	// import Fill_in from "./FillIn.svelte";
+	import FillIn from "./FillIn.svelte";
 	let show = false;
 	let activeQuestion = 0;
 	let score = 0;
 	let highScore = 0;
-	let currentCategory = "tv";
-	let categoryQuery = "category=14&type=multiple";
-	let quiz = getQuiz(categoryQuery);
+	let currentCategory = "spelling";
+	let type;
+
+	let quiz = questions.Quiz.spelling;
 
 	// array of quiz topics
 	let topics = [
-		{ title: "science", url: "category=17&type=multiple" },
-		{ title: "movies", url: "category=11&type=multiple" },
-		{ title: "music", url: "category=12&type=multiple" },
-		{ title: "tv", url: "category=14&type=multiple" },
-		{ title: "video games", url: "category=15&type=multiple" },
-		{ title: "computers", url: "category=18&type=multiple" },
-		{ title: "mythology", url: "category=20&type=multiple" },
-		{ title: "sports", url: "category=21&type=multiple" },
-		{ title: "geography", url: "category=22&type=multiple" },
-		{ title: "history", url: "category=23&type=multiple" },
-		{ title: "politics", url: "category=24&type=multiple" },
-		{ title: "art", url: "category=25&type=multiple" },
-		{ title: "celebrities", url: "category=26&type=multiple" },
-		{ title: "animals", url: "category=27&type=multiple" },
-		{ title: "vehicles", url: "category=28&type=multiple" },
-		{ title: "comics", url: "category=29&type=multiple" },
+		{ title: "fill in the blank", path: questions.Quiz.fill_in },
+		{ title: "spelling", path: questions.Quiz.spelling },
+		{ title: "sight word flash cards", path: questions.Quiz.sight },
+		{ title: "name that picture", path: questions.Quiz.picture },
+		{ title: "Math", path: questions.Quiz.math },
 	];
 
 	function scorePoint() {
@@ -50,43 +43,39 @@
 		}
 	}
 
-	async function getQuiz(url) {
-		let queryString = "category=17&type=multiple";
-		queryString = url;
-		console.log(queryString);
-
-		const res = await fetch(
-			"https://opentdb.com/api.php?amount=10&" + queryString
-		);
-		const quiz = await res.json();
+	function getQuiz(questions) {
+		const quiz = questions.Quiz;
 		console.log(quiz);
 		return quiz;
 	}
 	function choseCategory(topic) {
 		currentCategory = topic.title;
-		categoryQuery = topic.url;
-		resetQuiz(categoryQuery);
-		show = !show;
-	}
-	function resetQuiz(url) {
-		if (score > highScore) {
-			highScore = score;
-			localStorage.setItem("high", highScore);
-		}
+		quiz = topic.path;
+		console.log(quiz);
 
-		let query = url;
-		console.log(query);
+		show = !show;
+		return resetQuiz(quiz);
+	}
+	function resetQuiz(quiz) {
 		resetActiveQuestion();
 		resetScore();
-		quiz = getQuiz(query);
+
+		// getQuiz(quiz);
 	}
+
+	// getQuiz(questions);
 	checkHighScore();
+	$: if (score > highScore) {
+		highScore = score;
+		localStorage.setItem("high", highScore);
+	}
+	$: quiz;
 </script>
 
 <div class="main">
-	<h1 id="title">{currentCategory} trivia</h1>
+	<h1 id="title">{currentCategory}</h1>
 	<div class="dropdown">
-		<button on:click={() => (show = !show)} class="dropbtn">Category</button>
+		<button on:click={() => (show = !show)} class="dropbtn">Quiz Type</button>
 		<div
 			id="myDropdown"
 			class={show ? "dropdown-content show" : "dropdown-content"}
@@ -97,23 +86,16 @@
 		</div>
 	</div>
 
-	<button id="newQuiz" on:click={() => resetQuiz(categoryQuery)}
-		>Start new Quiz</button
-	>
+	<button id="newQuiz" on:click={() => resetQuiz()}>Start new Quiz</button>
+
 	<h3 id="score">My Score: {score}</h3>
 	<h3 id="highScore">High Score: {highScore}</h3>
 
-	{#await quiz}
-		loading........
-	{:then data}
-		{#each data.results as question, index}
-			{#if index === activeQuestion}
-				<div transition:fade class="question">
-					<Question {nextQuestion} {scorePoint} {question} />
-				</div>
-			{/if}
-		{/each}
-	{/await}
+	{#if currentCategory === "spelling"}
+		<Spelling {quiz} {nextQuestion} {scorePoint} {activeQuestion} />
+	{:else}
+		<FillIn {quiz} {nextQuestion} {scorePoint} {activeQuestion} />
+	{/if}
 </div>
 <br />
 
@@ -189,7 +171,7 @@
 	.dropdown-content {
 		display: none;
 		position: absolute;
-		background-color: #f1f1f1;
+		background-color: #3498db;
 		min-width: 160px;
 		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 		z-index: 1;
@@ -197,7 +179,7 @@
 
 	/* Links inside the dropdown */
 	.dropdown-content a {
-		color: black;
+		color: white;
 		padding: 12px 16px;
 		text-decoration: none;
 		display: block;
@@ -205,7 +187,7 @@
 
 	/* Change color of dropdown links on hover */
 	.dropdown-content a:hover {
-		background-color: #ddd;
+		background-color: #2980b9;
 	}
 
 	/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */

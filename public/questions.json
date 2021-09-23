@@ -1,0 +1,161 @@
+{
+    "Quiz": {
+        "fill_in": [
+            {
+                "question": "the __ played with the ball",
+                "type": "fill_in",
+                "answers": [
+                    "hose",
+                    "apple",
+                    "truck",
+                    "dog"
+                ],
+                "correct_answer": "dog"
+            },
+            {
+                "question": "my favorite color is __",
+                "type": "fill_in",
+                "answers": [
+                    "happy",
+                    "pat",
+                    "jump",
+                    "orange"
+                ],
+                "correct_answer": "orange"
+            },
+            {
+                "question": "the  mountain is __",
+                "type": "fill_in",
+                "answers": [
+                    "hat",
+                    "ball",
+                    "big",
+                    "dog"
+                ],
+                "correct_answer": "big"
+            },
+            {
+                "question": "I ride my bike __ down the street",
+                "type": "fill_in",
+                "answers": [
+                    "up",
+                    "left",
+                    "big",
+                    "fast"
+                ],
+                "correct_answer": "fast"
+            },
+            {
+                "question": "the water was __ when I washed my hands ",
+                "type": "fill_in",
+                "answers": [
+                    "big",
+                    "tall",
+                    "hot",
+                    "green"
+                ],
+                "correct_answer": "hot"
+            },
+            {
+                "question": "<img  src='https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg'> <p>I am a __</p>",
+                "type": "fill_in",
+                "answers": [
+                    "big",
+                    "tall",
+                    "dog",
+                    "green"
+                ],
+                "correct_answer": "dog"
+            },
+            {
+                "question": "<img  src='https://www.clker.com/cliparts/2/9/c/e/1194989740217082133orso_architetto_francesc_01.svg.med.png'> <p>I am a __</p>",
+                "type": "fill_in",
+                "answers": [
+                    "pig",
+                    "bear",
+                    "wolf",
+                    "cat"
+                ],
+                "correct_answer": "bear"
+            },
+            {
+                "question": "<img  src='http://www.clker.com/cliparts/a/M/G/A/X/6/bug-eyed-frog-md.png'> <p>I am a __</p>",
+                "type": "fill_in",
+                "answers": [
+                    "frog",
+                    "lion",
+                    "bat",
+                    "horse"
+                ],
+                "correct_answer": "frog"
+            },
+            {
+                "question": "<img  src='http://www.clker.com/cliparts/6/1/1/9/11954395571816358682loup__tienne_bersac_01.svg.med.png'> <p>I am a __</p>",
+                "type": "fill_in",
+                "answers": [
+                    "frog",
+                    "lion",
+                    "wolf",
+                    "horse"
+                ],
+                "correct_answer": "wolf"
+            },
+            {
+                "question": "<img  src='http://www.clker.com/cliparts/b/7/a/c/11949898031195101122gatto_cat_architetto_fra_03.svg.med.png'> <p>I am a __</p>",
+                "type": "fill_in",
+                "answers": [
+                    "frog",
+                    "lion",
+                    "wolf",
+                    "cat"
+                ],
+                "correct_answer": "cat"
+            },
+            {
+                "question": "<img  src='http://www.clker.com/cliparts/1/e/9/3/11949861201253597508apple.svg.med.png'> <p>this is an __</p>",
+                "type": "fill_in",
+                "answers": [
+                    "apple",
+                    "orange",
+                    "grape",
+                    "watermelon"
+                ],
+                "correct_answer": "apple"
+            },
+            {
+                "question": "<img  src='http://www.clker.com/cliparts/0/7/b/4/1195428718824289992Machovka_watermelon1.svg.med.png'> <p>this is a __</p>",
+                "type": "fill_in",
+                "answers": [
+                    "apple",
+                    "orange",
+                    "grape",
+                    "watermelon"
+                ],
+                "correct_answer": "watermelon"
+            },
+            {
+                "question": "<img  src='http://www.clker.com/cliparts/e/9/f/2/12096726722032596245SRD_Strawberry.svg.med.png'> <p>this is a __</p>",
+                "type": "fill_in",
+                "answers": [
+                    "apple",
+                    "orange",
+                    "strawberry",
+                    "watermelon"
+                ],
+                "correct_answer": "strawberry"
+            }
+        ],
+        "spelling": [
+            {
+                "question": "<img  src='http://www.clker.com/cliparts/7/1/0/6/1194986831579486974beach_ball_01.svg.med.png'> <p>this is a _ _ _ _</p>",
+                "type": "spelling",
+                "correct_answer": "ball"
+            },
+            {
+                "question": "<img  src='http://www.clker.com/cliparts/7/1/0/6/1194986831579486974beach_ball_01.svg.med.png'> <p>this is a _ _ _ _</p>",
+                "type": "spelling",
+                "correct_answer": "ball"
+            }
+        ]
+    }
+}
