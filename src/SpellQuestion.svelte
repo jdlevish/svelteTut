@@ -28,7 +28,7 @@
 
 		<form
 			on:submit={() => {
-				handleClick(spell);
+				handleClick(spell.toLowerCase());
 			}}
 		>
 			<input bind:value={spell} />
@@ -74,8 +74,8 @@
 		height: 20vh;
 		width: 17vw;
 	}
-	.question {
+	/* .question {
 		margin-left: 40%;
 		margin-right: auto;
-	}
+	} */
 </style>

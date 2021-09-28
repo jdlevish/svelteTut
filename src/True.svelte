@@ -8,12 +8,19 @@
 	}
 </script>
 
-<button on:click={(scorePoint, toggleAnswered, nextQuestion)}
+<button class="question" on:click={(scorePoint, toggleAnswered, nextQuestion)}
 	>Correct Answer</button
 >
 
 <style>
 	button {
 		color: cornflowerblue;
+	}
+
+	.question {
+		justify-self: center;
+		grid-column-start: 1;
+		grid-column-end: 4;
+		grid-row-start: 3;
 	}
 </style>

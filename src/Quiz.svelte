@@ -92,9 +92,21 @@
 	<h3 id="highScore">High Score: {highScore}</h3>
 
 	{#if currentCategory === "spelling"}
-		<Spelling {quiz} {nextQuestion} {scorePoint} {activeQuestion} />
+		<Spelling
+			class="question"
+			{quiz}
+			{nextQuestion}
+			{scorePoint}
+			{activeQuestion}
+		/>
 	{:else}
-		<FillIn {quiz} {nextQuestion} {scorePoint} {activeQuestion} />
+		<FillIn
+			class="question"
+			{quiz}
+			{nextQuestion}
+			{scorePoint}
+			{activeQuestion}
+		/>
 	{/if}
 </div>
 <br />

@@ -152,9 +152,39 @@
                 "correct_answer": "ball"
             },
             {
-                "question": "<img  src='http://www.clker.com/cliparts/7/1/0/6/1194986831579486974beach_ball_01.svg.med.png'> <p>this is a _ _ _ _</p>",
+                "question": "<img  src='http://www.clker.com/cliparts/2/d/b/d/11949855241756811586dog_01_drawn_with_strai_01.svg.med.png'> <p>this is a _ _ _ </p>",
                 "type": "spelling",
-                "correct_answer": "ball"
+                "correct_answer": "dog"
+            },
+            {
+                "question": "<img  src='http://www.clker.com/cliparts/7/2/5/1/11954400051906905019johnny_automatic_cat.svg.med.png'> <p>this is a _ _ _ </p>",
+                "type": "spelling",
+                "correct_answer": "cat"
+            },
+            {
+                "question": "<img  src='http://www.clker.com/cliparts/4/3/9/b/1195424185119439781Machovka_bat.svg.med.png'> <p>this is a _ _ _ </p>",
+                "type": "spelling",
+                "correct_answer": "bat"
+            },
+            {
+                "question": "<img  src='http://www.clker.com/cliparts/8/4/2/9/11949855122127008465vacca_pezzata_rossa_val_01.svg.med.png'> <p>this is a _ _ _ </p>",
+                "type": "spelling",
+                "correct_answer": "cow"
+            },
+            {
+                "question": "<img  src='http://www.clker.com/cliparts/6/8/d/b/1194985142426812122sportcar_sergio_luiz_ara_01.svg.med.png'> <p>this is a _ _ _ </p>",
+                "type": "spelling",
+                "correct_answer": "car"
+            },
+            {
+                "question": "<img  src='http://www.clker.com/cliparts/b/6/0/8/11949896821208544722boat_jarno_vasamaa1.svg.med.png'> <p>this is a _ _ _ _ </p>",
+                "type": "spelling",
+                "correct_answer": "boat"
+            },
+            {
+                "question": "<img  src='http://www.clker.com/cliparts/2/6/d/8/1194986432495548228pimp_hat_james_birkett_01.svg.med.png'> <p>this is a _ _ _  </p>",
+                "type": "spelling",
+                "correct_answer": "hat"
             }
         ]
     }
