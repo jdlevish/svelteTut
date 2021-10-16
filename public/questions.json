@@ -186,6 +186,192 @@
                 "type": "spelling",
                 "correct_answer": "hat"
             }
+        ],
+        "sight": [
+            {
+                "word": "do",
+                "type": "sight_word"
+            },
+            {
+                "word": "are",
+                "type": "sight_word"
+            },
+            {
+                "word": "no",
+                "type": "sight_word"
+            },
+            {
+                "word": "was",
+                "type": "sight_word"
+            },
+            {
+                "word": "she",
+                "type": "sight_word"
+            },
+            {
+                "word": "was",
+                "type": "sight_word"
+            },
+            {
+                "word": "and",
+                "type": "sight_word"
+            },
+            {
+                "word": "why",
+                "type": "sight_word"
+            },
+            {
+                "word": "are",
+                "type": "sight_word"
+            },
+            {
+                "word": "go",
+                "type": "sight_word"
+            },
+            {
+                "word": "to",
+                "type": "sight_word"
+            },
+            {
+                "word": "is",
+                "type": "sight_word"
+            },
+            {
+                "word": "to",
+                "type": "sight_word"
+            },
+            {
+                "word": "with",
+                "type": "sight_word"
+            },
+            {
+                "word": "you",
+                "type": "sight_word"
+            },
+            {
+                "word": "no",
+                "type": "sight_word"
+            },
+            {
+                "word": "he",
+                "type": "sight_word"
+            },
+            {
+                "word": "she",
+                "type": "sight_word"
+            },
+            {
+                "word": "is",
+                "type": "sight_word"
+            },
+            {
+                "word": "little",
+                "type": "sight_word"
+            },
+            {
+                "word": "an",
+                "type": "sight_word"
+            },
+            {
+                "word": "like",
+                "type": "sight_word"
+            },
+            {
+                "word": "A",
+                "type": "sight_word"
+            },
+            {
+                "word": "pink",
+                "type": "sight_word"
+            },
+            {
+                "word": "they",
+                "type": "sight_word"
+            },
+            {
+                "word": "orange",
+                "type": "sight_word"
+            },
+            {
+                "word": "her",
+                "type": "sight_word"
+            },
+            {
+                "word": "green",
+                "type": "sight_word"
+            },
+            {
+                "word": "said",
+                "type": "sight_word"
+            },
+            {
+                "word": "yellow",
+                "type": "sight_word"
+            },
+            {
+                "word": "of",
+                "type": "sight_word"
+            },
+            {
+                "word": "black",
+                "type": "sight_word"
+            },
+            {
+                "word": "purple",
+                "type": "sight_word"
+            },
+            {
+                "word": "have",
+                "type": "sight_word"
+            },
+            {
+                "word": "blue",
+                "type": "sight_word"
+            },
+            {
+                "word": "brown",
+                "type": "sight_word"
+            },
+            {
+                "word": "for",
+                "type": "sight_word"
+            },
+            {
+                "word": "white",
+                "type": "sight_word"
+            },
+            {
+                "word": "they",
+                "type": "sight_word"
+            },
+            {
+                "word": "red",
+                "type": "sight_word"
+            },
+            {
+                "word": "have",
+                "type": "sight_word"
+            },
+            {
+                "word": "why",
+                "type": "sight_word"
+            },
+            {
+                "word": "go",
+                "type": "sight_word"
+            },
+            {
+                "word": "with",
+                "type": "sight_word"
+            },
+            {
+                "word": "he",
+                "type": "sight_word"
+            },
+            {
+                "word": "my",
+                "type": "sight_word"
+            }
         ]
     }
 }

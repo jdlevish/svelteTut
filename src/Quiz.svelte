@@ -3,6 +3,7 @@
 
 	import questions from "../public/questions.json";
 	import Spelling from "./Spelling.svelte";
+	import Sight from "./Sight.svelte";
 	// import Fill_in from "./FillIn.svelte";
 	import FillIn from "./FillIn.svelte";
 	let show = false;
@@ -69,6 +70,7 @@
 		highScore = score;
 		localStorage.setItem("high", highScore);
 	}
+
 	$: quiz;
 </script>
 
@@ -99,6 +101,8 @@
 			{scorePoint}
 			{activeQuestion}
 		/>
+	{:else if currentCategory === "sight word flash cards"}
+		<Sight class="question" {quiz} {nextQuestion} {activeQuestion} />
 	{:else}
 		<FillIn
 			class="question"
