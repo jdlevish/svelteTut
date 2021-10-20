@@ -4,15 +4,13 @@
 	import questions from "../public/questions.json";
 	import Spelling from "./Spelling.svelte";
 	import Sight from "./Sight.svelte";
-	// import Fill_in from "./FillIn.svelte";
+	import Math from "./Math.svelte";
 	import FillIn from "./FillIn.svelte";
 	let show = false;
 	let activeQuestion = 0;
 	let score = 0;
 	let highScore = 0;
 	let currentCategory = "spelling";
-	let type;
-
 	let quiz = questions.Quiz.spelling;
 
 	// array of quiz topics
@@ -20,8 +18,7 @@
 		{ title: "fill in the blank", path: questions.Quiz.fill_in },
 		{ title: "spelling", path: questions.Quiz.spelling },
 		{ title: "sight word flash cards", path: questions.Quiz.sight },
-		{ title: "name that picture", path: questions.Quiz.picture },
-		{ title: "Math", path: questions.Quiz.math },
+		{ title: "Math", path: questions.Quiz.Math },
 	];
 
 	function scorePoint() {
@@ -75,9 +72,10 @@
 </script>
 
 <div class="main">
-	<h1 id="title">{currentCategory}</h1>
+	<div id="title">{currentCategory}</div>
 	<div class="dropdown">
 		<button on:click={() => (show = !show)} class="dropbtn">Quiz Type</button>
+
 		<div
 			id="myDropdown"
 			class={show ? "dropdown-content show" : "dropdown-content"}
@@ -87,7 +85,6 @@
 			{/each}
 		</div>
 	</div>
-
 	<button id="newQuiz" on:click={() => resetQuiz()}>Start new Quiz</button>
 
 	<h3 id="score">My Score: {score}</h3>
@@ -103,6 +100,14 @@
 		/>
 	{:else if currentCategory === "sight word flash cards"}
 		<Sight class="question" {quiz} {nextQuestion} {activeQuestion} />
+	{:else if currentCategory === "Math"}
+		<Math
+			class="question"
+			{quiz}
+			{nextQuestion}
+			{scorePoint}
+			{activeQuestion}
+		/>
 	{:else}
 		<FillIn
 			class="question"
@@ -117,12 +122,11 @@
 
 <style>
 	:global(body) {
-		color: purple;
-		background-color: aqua;
+		background-color: whitesmoke;
 	}
 	.main {
-		color: purple;
-		background-color: aqua;
+		color: orangered;
+		background-color: whitesmoke;
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 		grid-template-rows: 20vh 20vh 20vh 20vh;
@@ -131,27 +135,29 @@
 	#title {
 		justify-self: center;
 		grid-column-start: 2;
-		grid-column-end: 3;
+		grid-column-end: 2;
 		grid-row-start: 1;
+		font-size: 3rem;
+		font-weight: 800;
 	}
 	#newQuiz {
 		/* max-height: 8vh; */
-		justify-self: end;
+		justify-self: center;
 		/* max-width: 20vw; */
-		grid-column-start: 1;
-		grid-column-end: 1;
-		grid-row-start: 2;
+		grid-column-start: 3;
+		grid-column-end: 3;
+		grid-row-start: 1;
 	}
 	#score {
 		justify-self: center;
-		grid-column-start: 2;
-		grid-column-end: 3;
+		grid-column-start: 1;
+		grid-column-end: 2;
 		grid-row-start: 2;
 	}
 	#highScore {
-		justify-self: start;
+		justify-self: center;
 		grid-column-start: 3;
-		grid-column-end: 4;
+		grid-column-end: 3;
 		grid-row-start: 2;
 	}
 	.question {
@@ -162,12 +168,15 @@
 	}
 	/* Dropdown Button */
 	.dropbtn {
+		justify-self: center;
 		background-color: #3498db;
 		color: white;
 		padding: 16px;
 		font-size: 16px;
 		border: none;
 		cursor: pointer;
+		grid-column-start: 1;
+		grid-row-start: 1;
 	}
 
 	/* Dropdown button on hover & focus */
@@ -178,15 +187,16 @@
 
 	/* The container <div> - needed to position the dropdown content */
 	.dropdown {
-		position: relative;
-		display: inline-block;
+		display: grid;
+		/* position: relative; */
+		/* display: inline-block; */
 	}
 
 	/* Dropdown Content (Hidden by Default) */
 
 	.dropdown-content {
 		display: none;
-		position: absolute;
+		grid-row-start: 2;
 		background-color: #3498db;
 		min-width: 160px;
 		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -198,7 +208,6 @@
 		color: white;
 		padding: 12px 16px;
 		text-decoration: none;
-		display: block;
 	}
 
 	/* Change color of dropdown links on hover */

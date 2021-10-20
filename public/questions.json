@@ -372,6 +372,78 @@
                 "word": "my",
                 "type": "sight_word"
             }
+        ],
+        "Math": [
+            {
+                "question": " 1 + 2 = _",
+                "answers": [
+                    4,
+                    6,
+                    5,
+                    3
+                ],
+                "correct_answer": 3
+            },
+            {
+                "question": " 5 + 2 = _",
+                "answers": [
+                    5,
+                    1,
+                    2,
+                    7
+                ],
+                "correct_answer": 7
+            },
+            {
+                "question": " 5 - 2 = _",
+                "answers": [
+                    4,
+                    7,
+                    8,
+                    3
+                ],
+                "correct_answer": 3
+            },
+            {
+                "question": " 1 + 6 = _",
+                "answers": [
+                    4,
+                    7,
+                    5,
+                    2
+                ],
+                "correct_answer": 7
+            },
+            {
+                "question": " 9 + 2 = _",
+                "answers": [
+                    11,
+                    14,
+                    20,
+                    12
+                ],
+                "correct_answer": 11
+            },
+            {
+                "question": " 8 - 2 = _",
+                "answers": [
+                    10,
+                    7,
+                    6,
+                    3
+                ],
+                "correct_answer": 6
+            },
+            {
+                "question": " 5 + 5 = _",
+                "answers": [
+                    0,
+                    7,
+                    10,
+                    11
+                ],
+                "correct_answer": 10
+            }
         ]
     }
 }

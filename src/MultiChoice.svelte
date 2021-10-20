@@ -27,15 +27,16 @@
 <div>
 	{#if !isAnswered}
 		<h2 class="question">{@html question.question}</h2>
-
-		{#each answers as answer}
-			<button
-				class="btn"
-				on:click={() => {
-					handleClick(answer);
-				}}>{@html answer}</button
-			>
-		{/each}
+		<div class="answers">
+			{#each answers as answer}
+				<button
+					class="btn"
+					on:click={() => {
+						handleClick(answer);
+					}}>{@html answer}</button
+				>
+			{/each}
+		</div>
 		<br />
 	{:else if questionRes}
 		<True

@@ -14,7 +14,8 @@
 
 <style>
 	button {
-		color: red;
+		background-color: red;
+		color: white;
 	}
 	h3 {
 		color: red;

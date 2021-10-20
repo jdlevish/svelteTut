@@ -14,7 +14,8 @@
 
 <style>
 	button {
-		color: cornflowerblue;
+		color: white;
+		line-height: 1rem;
 	}
 
 	.question {

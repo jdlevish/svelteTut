@@ -47,6 +47,9 @@
 </div>
 
 <style>
+	input {
+		border: 2px solid black;
+	}
 	:global(button) {
 		justify-content: stretch;
 		font-family: "Source Sans Pro", sans-serif;
@@ -63,12 +66,12 @@
 		cursor: pointer;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
-		background-color: yellow;
-		color: palevioletred;
+		background-color: #2980b9;
+		color: whitesmoke;
 	}
 	:global(button:hover) {
-		background-color: rgb(253, 255, 144);
-		color: rgb(204, 59, 108);
+		background-color: rgb(16, 92, 143);
+		color: whitesmoke;
 	}
 	:global(img) {
 		height: 20vh;

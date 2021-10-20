@@ -11,11 +11,11 @@
 
 <style>
 	.word {
-		border: 6px solid purple;
+		border: 6px solid orangered;
 		padding: 10px 60px 10px 60px;
 		font-family: "Source Sans Pro", sans-serif;
 		font-weight: 900;
 		font-size: 4.5rem;
-		color: purple;
+		color: orangered;
 	}
 </style>
