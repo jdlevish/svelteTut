@@ -4,7 +4,7 @@
 	console.log(word.word);
 	setTimeout(function () {
 		nextQuestion();
-	}, 7000);
+	}, 4000);
 </script>
 
 <div class="word">{word.word}</div>
