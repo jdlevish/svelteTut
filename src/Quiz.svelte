@@ -1,33 +1,24 @@
 <script>
-	import App from "./App.svelte";
-	import Question from "./Question.svelte";
-	import { fade } from "svelte/transition";
+	// import App from "./App.svelte";
+
+	import questions from "../public/questions.json";
+	import Spelling from "./Spelling.svelte";
+	import Sight from "./Sight.svelte";
+	import Math from "./Math.svelte";
+	import FillIn from "./FillIn.svelte";
 	let show = false;
 	let activeQuestion = 0;
 	let score = 0;
 	let highScore = 0;
-	let currentCategory = "tv";
-	let categoryQuery = "category=14&type=multiple";
-	let quiz = getQuiz(categoryQuery);
+	let currentCategory = "spelling";
+	let quiz = questions.Quiz.spelling;
 
 	// array of quiz topics
 	let topics = [
-		{ title: "science", url: "category=17&type=multiple" },
-		{ title: "movies", url: "category=11&type=multiple" },
-		{ title: "music", url: "category=12&type=multiple" },
-		{ title: "tv", url: "category=14&type=multiple" },
-		{ title: "video games", url: "category=15&type=multiple" },
-		{ title: "computers", url: "category=18&type=multiple" },
-		{ title: "mythology", url: "category=20&type=multiple" },
-		{ title: "sports", url: "category=21&type=multiple" },
-		{ title: "geography", url: "category=22&type=multiple" },
-		{ title: "history", url: "category=23&type=multiple" },
-		{ title: "politics", url: "category=24&type=multiple" },
-		{ title: "art", url: "category=25&type=multiple" },
-		{ title: "celebrities", url: "category=26&type=multiple" },
-		{ title: "animals", url: "category=27&type=multiple" },
-		{ title: "vehicles", url: "category=28&type=multiple" },
-		{ title: "comics", url: "category=29&type=multiple" },
+		{ title: "fill in the blank", path: questions.Quiz.fill_in },
+		{ title: "spelling", path: questions.Quiz.spelling },
+		{ title: "sight word flash cards", path: questions.Quiz.sight },
+		{ title: "Math", path: questions.Quiz.Math },
 	];
 
 	function scorePoint() {
@@ -50,43 +41,41 @@
 		}
 	}
 
-	async function getQuiz(url) {
-		let queryString = "category=17&type=multiple";
-		queryString = url;
-		console.log(queryString);
-
-		const res = await fetch(
-			"https://opentdb.com/api.php?amount=10&" + queryString
-		);
-		const quiz = await res.json();
+	function getQuiz(questions) {
+		const quiz = questions.Quiz;
 		console.log(quiz);
 		return quiz;
 	}
 	function choseCategory(topic) {
 		currentCategory = topic.title;
-		categoryQuery = topic.url;
-		resetQuiz(categoryQuery);
-		show = !show;
-	}
-	function resetQuiz(url) {
-		if (score > highScore) {
-			highScore = score;
-			localStorage.setItem("high", highScore);
-		}
+		quiz = topic.path;
+		console.log(quiz);
 
-		let query = url;
-		console.log(query);
+		show = !show;
+		return resetQuiz(quiz);
+	}
+	function resetQuiz(quiz) {
 		resetActiveQuestion();
 		resetScore();
-		quiz = getQuiz(query);
+
+		// getQuiz(quiz);
 	}
+
+	// getQuiz(questions);
 	checkHighScore();
+	$: if (score > highScore) {
+		highScore = score;
+		localStorage.setItem("high", highScore);
+	}
+
+	$: quiz;
 </script>
 
-<div class="main">
-	<h1 id="title">{currentCategory} trivia</h1>
+<div class="main card">
+	<!-- <div id="title">{currentCategory}</div> -->
 	<div class="dropdown">
-		<button on:click={() => (show = !show)} class="dropbtn">Category</button>
+		<button on:click={() => (show = !show)} class="dropbtn">Quiz Type</button>
+
 		<div
 			id="myDropdown"
 			class={show ? "dropdown-content show" : "dropdown-content"}
@@ -96,103 +85,158 @@
 			{/each}
 		</div>
 	</div>
+	<button id="newQuiz" on:click={() => resetQuiz()}>new Quiz</button>
 
-	<button id="newQuiz" on:click={() => resetQuiz(categoryQuery)}
-		>Start new Quiz</button
-	>
 	<h3 id="score">My Score: {score}</h3>
 	<h3 id="highScore">High Score: {highScore}</h3>
 
-	{#await quiz}
-		loading........
-	{:then data}
-		{#each data.results as question, index}
-			{#if index === activeQuestion}
-				<div transition:fade class="question">
-					<Question {nextQuestion} {scorePoint} {question} />
-				</div>
-			{/if}
-		{/each}
-	{/await}
+	{#if currentCategory === "spelling"}
+		<Spelling
+			class="question"
+			{quiz}
+			{nextQuestion}
+			{scorePoint}
+			{activeQuestion}
+		/>
+	{:else if currentCategory === "sight word flash cards"}
+		<Sight id="word" {quiz} {nextQuestion} {activeQuestion} />
+	{:else if currentCategory === "Math"}
+		<Math
+			class="question"
+			{quiz}
+			{nextQuestion}
+			{scorePoint}
+			{activeQuestion}
+		/>
+	{:else}
+		<FillIn
+			class="question"
+			{quiz}
+			{nextQuestion}
+			{scorePoint}
+			{activeQuestion}
+		/>
+	{/if}
 </div>
 <br />
 
 <style>
 	:global(body) {
-		color: purple;
-		background-color: aqua;
+		background: white;
 	}
 	.main {
-		color: purple;
-		background-color: aqua;
+		color: black;
+		background-color: whitesmoke;
+	}
+	.card {
+		color: white;
+		height: 70vh;
+		width: 55vw;
+		/* border: 1px solid rgb(98, 2, 143); */
+		/* Created with https://www.css-gradient.com */
+		background: #35879b;
+		background: -webkit-linear-gradient(top, #35879b, #3f1254);
+		background: -moz-linear-gradient(top, #35879b, #3f1254);
+		background: linear-gradient(to bottom, #35879b, #3f1254);
+		border-radius: 10px;
+		margin-left: 22.5vw;
+		margin-right: 22.5vw;
+		margin-top: 15vh;
+		box-shadow: 4px 6px rgb(210, 208, 211);
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 		grid-template-rows: 20vh 20vh 20vh 20vh;
 		grid-gap: 20px;
 	}
+
 	#title {
 		justify-self: center;
 		grid-column-start: 2;
-		grid-column-end: 3;
+		grid-column-end: 2;
 		grid-row-start: 1;
+		font-size: 3rem;
+		font-weight: 800;
 	}
 	#newQuiz {
 		/* max-height: 8vh; */
-		justify-self: end;
-		/* max-width: 20vw; */
-		grid-column-start: 1;
-		grid-column-end: 1;
-		grid-row-start: 2;
+		background-color: white;
+		color: black;
+		justify-self: center;
+		vertical-align: top;
+		/* max-w	idth: 20vw; */
+		grid-column-start: 4;
+		grid-column-end: 4;
+		grid-row-start: 1;
+		margin-top: 1rem;
+		/* margin-left: 1rem; */
+	}
+	#newQuiz:hover {
+		background-color: white;
+		color: black;
 	}
 	#score {
 		justify-self: center;
-		grid-column-start: 2;
-		grid-column-end: 3;
-		grid-row-start: 2;
+		grid-column-start: 1;
+		grid-column-end: 2;
+		grid-row-start: 3;
 	}
 	#highScore {
-		justify-self: start;
-		grid-column-start: 3;
-		grid-column-end: 4;
-		grid-row-start: 2;
-	}
-	.question {
 		justify-self: center;
-		grid-column-start: 1;
+		grid-column-start: 4;
 		grid-column-end: 4;
 		grid-row-start: 3;
 	}
+	.question {
+		justify-self: center;
+		grid-column: 2 / span 2;
+		/* grid-column-end: 4; */
+		grid-row-start: 2;
+		padding: 0.5rem 0.5rem 0 0;
+	}
 	/* Dropdown Button */
 	.dropbtn {
-		background-color: #3498db;
-		color: white;
-		padding: 16px;
-		font-size: 16px;
+		justify-self: center;
+		text-align: center;
+		vertical-align: middle;
+		background-color: white;
+		color: black;
+
+		font-size: 1rem;
 		border: none;
 		cursor: pointer;
+		grid-column-start: 1;
+		grid-row-start: 1;
+		box-shadow: 1px 2px rgb(199, 187, 204);
+		margin-left: 1rem;
+		margin-top: 1rem;
+		/* padding-bottom: 1rem; */
 	}
 
 	/* Dropdown button on hover & focus */
 	.dropbtn:hover,
 	.dropbtn:focus {
-		background-color: #2980b9;
+		background-color: white;
+		color: darkgray;
 	}
 
 	/* The container <div> - needed to position the dropdown content */
 	.dropdown {
-		position: relative;
-		display: inline-block;
+		display: grid;
+		/* position: relative; */
+		/* display: inline-block; */
 	}
 
 	/* Dropdown Content (Hidden by Default) */
 
 	.dropdown-content {
 		display: none;
-		position: absolute;
-		background-color: #f1f1f1;
+		grid-row-start: 2;
+		background-color: white;
 		min-width: 160px;
-		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+		border: 0.07rem solid rgb(56, 103, 135);
+		box-shadow: 1px 2px rgb(56, 103, 135);
 		z-index: 1;
+		border-radius: 10px;
 	}
 
 	/* Links inside the dropdown */
@@ -200,12 +244,11 @@
 		color: black;
 		padding: 12px 16px;
 		text-decoration: none;
-		display: block;
 	}
 
 	/* Change color of dropdown links on hover */
 	.dropdown-content a:hover {
-		background-color: #ddd;
+		background-color: white;
 	}
 
 	/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */

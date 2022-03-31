@@ -7,14 +7,23 @@
 	}
 </script>
 
-<button on:click={(toggleAnswered, nextQuestion)}>wrong Answer</button>
+<button class="question" on:click={(toggleAnswered, nextQuestion)}
+	>wrong Answer</button
+>
 <h3>The Correct Answer was : {@html correctAnswer}</h3>
 
 <style>
 	button {
-		color: red;
+		background-color: red;
+		color: white;
 	}
 	h3 {
-		color: red;
+		color: white;
+	}
+	.question {
+		justify-self: center;
+		grid-column-start: 1;
+		grid-column-end: 4;
+		grid-row-start: 3;
 	}
 </style>

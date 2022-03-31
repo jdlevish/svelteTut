@@ -2,49 +2,54 @@
 	import True from "./True.svelte";
 	import False from "./False.svelte";
 	import { fade } from "svelte/transition";
+
 	export let question;
 	export let nextQuestion;
 	export let scorePoint;
 	let correctAnswer = question.correct_answer;
 	let isAnswered = false;
 	let questionRes;
-	let answers = question.incorrect_answers;
+	let answers = question.answers;
+	let spell = "";
 
 	function handleClick(answer) {
 		questionRes = answer === question.correct_answer;
 		isAnswered = true;
 		return questionRes;
 	}
-	function shuffleAnswers(answers) {
-		answers.push(question.correct_answer);
-		answers.sort(() => Math.random() - 0.5);
-	}
-	shuffleAnswers(answers);
+
+	console.log(question);
 </script>
 
-<h2>{@html question.question}</h2>
-{#if !isAnswered}
-	{#each answers as answer}
-		<button
-			class="btn"
-			on:click={() => {
-				handleClick(answer);
-			}}>{@html answer}</button
+<div class="question">
+	{#if !isAnswered}
+		<h2>{@html question.question}</h2>
+		<h3>{spell}</h3>
+
+		<form
+			on:submit={() => {
+				handleClick(spell.toLowerCase());
+			}}
 		>
-	{/each}
-	<br />
-{:else if questionRes}
-	<True
-		{nextQuestion}
-		{scorePoint}
-		{isAnswered}
-	/>{:else if questionRes === false}<False
-		{nextQuestion}
-		{correctAnswer}
-		{isAnswered}
-	/>{/if}
+			<input bind:value={spell} />
+		</form>
+	{:else if questionRes}
+		<True
+			{nextQuestion}
+			{scorePoint}
+			{isAnswered}
+		/>{:else if questionRes === false}<False
+			{nextQuestion}
+			{correctAnswer}
+			{isAnswered}
+		/>
+	{/if}
+</div>
 
 <style>
+	input {
+		border: 2px solid black;
+	}
 	:global(button) {
 		justify-content: stretch;
 		font-family: "Source Sans Pro", sans-serif;
@@ -61,11 +66,21 @@
 		cursor: pointer;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
-		background-color: yellow;
-		color: palevioletred;
+		background-color: white;
+		color: black;
 	}
 	:global(button:hover) {
-		background-color: rgb(253, 255, 144);
-		color: rgb(204, 59, 108);
+		background-color: white;
+		color: black;
+	}
+	:global(img) {
+		height: 20vh;
+		width: 17vw;
+	}
+	.question {
+		grid-column-start: 3;
+		grid-row-start: 1;
+		/* margin-left: %;
+		margin-right: auto; */
 	}
 </style>
