@@ -18,7 +18,7 @@
 		color: white;
 	}
 	h3 {
-		color: red;
+		color: white;
 	}
 	.question {
 		justify-self: center;

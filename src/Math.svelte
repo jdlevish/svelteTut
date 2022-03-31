@@ -19,8 +19,9 @@
 <style>
 	.question {
 		justify-self: center;
-		grid-column-start: 1;
-		grid-column-end: 4;
-		grid-row-start: 3;
+		grid-column: 2 / span 2;
+		/* grid-column-end: 3; */
+		grid-row-start: 2;
+		margin-top: 5vh;
 	}
 </style>

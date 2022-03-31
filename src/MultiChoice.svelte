@@ -56,31 +56,43 @@
 		justify-content: stretch;
 		font-family: "Source Sans Pro", sans-serif;
 		font-weight: 900;
-		padding: 1.25rem 2rem;
+		padding: 0.5rem 2rem;
 		font-size: 1rem;
-		border-radius: 3.5rem / 100%;
+		border-radius: 10px;
+		box-shadow: 1px 2px rgb(199, 187, 204);
 		position: relative;
-		min-width: 15rem;
+		min-width: 10rem;
 		max-width: 15vw;
-		height: 10vh;
+		height: 5vh;
 		overflow: hidden;
 		border: 0;
 		cursor: pointer;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
-		background-color: yellow;
-		color: palevioletred;
+		background-color: white;
+		color: black;
 	}
 	:global(button:hover) {
-		background-color: rgb(253, 255, 144);
-		color: rgb(204, 59, 108);
+		background-color: white;
+		color: black;
 	}
 	:global(img) {
 		height: 20vh;
 		width: 17vw;
 	}
 	.question {
-		margin-left: 40%;
-		margin-right: auto;
+		font-size: 1.2rem;
+		text-align: center;
+		/* justify-self: stretch; */
+		grid-column: 2 / span 2;
+		/* grid-column-end: 4; */
+		grid-row-start: 2;
+		/* margin-top: 13vh;
+		margin-left: 10vw; */
+	}
+	.answers {
+		justify-items: center;
+		grid-column: 3 / span 2;
+		grid-row-start: 2;
 	}
 </style>

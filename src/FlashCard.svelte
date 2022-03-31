@@ -11,11 +11,16 @@
 
 <style>
 	.word {
-		border: 6px solid orangered;
+		justify-self: center;
+		grid-column: 2 / span 2;
+		/* grid-column-end: 3; */
+		grid-row-start: 2;
+		margin-top: 5vh;
+		border: 6px solid white;
 		padding: 10px 60px 10px 60px;
 		font-family: "Source Sans Pro", sans-serif;
 		font-weight: 900;
 		font-size: 4.5rem;
-		color: orangered;
+		color: white;
 	}
 </style>

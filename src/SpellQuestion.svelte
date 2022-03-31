@@ -21,9 +21,9 @@
 	console.log(question);
 </script>
 
-<div>
+<div class="question">
 	{#if !isAnswered}
-		<h2 class="question">{@html question.question}</h2>
+		<h2>{@html question.question}</h2>
 		<h3>{spell}</h3>
 
 		<form
@@ -66,19 +66,21 @@
 		cursor: pointer;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
-		background-color: #2980b9;
-		color: whitesmoke;
+		background-color: white;
+		color: black;
 	}
 	:global(button:hover) {
-		background-color: rgb(16, 92, 143);
-		color: whitesmoke;
+		background-color: white;
+		color: black;
 	}
 	:global(img) {
 		height: 20vh;
 		width: 17vw;
 	}
-	/* .question {
-		margin-left: 40%;
-		margin-right: auto;
-	} */
+	.question {
+		grid-column-start: 3;
+		grid-row-start: 1;
+		/* margin-left: %;
+		margin-right: auto; */
+	}
 </style>
